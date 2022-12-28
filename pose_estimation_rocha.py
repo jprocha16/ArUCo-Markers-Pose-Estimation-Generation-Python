@@ -2,8 +2,6 @@
 Sample Usage:-
 python pose_estimation.py --K_Matrix calibration_matrix.npy --D_Coeff distortion_coefficients.npy --type DICT_5X5_100
 '''
-
-
 import numpy as np
 import cv2
 import sys
@@ -60,20 +58,15 @@ if __name__ == '__main__':
     args = vars(ap.parse_args())
 
     if args["camera"]:
-        print('trying to open camera')
         video = cv2.VideoCapture(0)
         time.sleep(2.0)
     else:
-        print('trying to open video file')
         if args["video"] is None:
             print("[Error] Video file location is not provided")
             sys.exit(1)
-
         video = cv2.VideoCapture(args["video"])
-        if video is None or not video.isOpened():
-            print('ERROR: video not found!')
 
-    
+
     if ARUCO_DICT.get(args["type"], None) is None:
         print(f"ArUCo tag type '{args['type']}' is not supported")
         sys.exit(0)
