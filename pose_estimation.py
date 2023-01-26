@@ -24,10 +24,10 @@ def pose_estimation(frame, aruco_dict_type, matrix_coefficients, distortion_coef
     gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
     cv2.aruco_dict = cv2.aruco.Dictionary_get(aruco_dict_type)
     parameters = cv2.aruco.DetectorParameters_create()
-    tvec = np.zeros((1,1,3))
+    tvec = np.zeros((1, 1, 3))
     # corners, ids, rejected_img_points = cv2.aruco.detectMarkers(gray, cv2.aruco_dict,parameters=parameters,
-    #     cameraMatrix=matrix_coefficients,
-    #     distCoeff=distortion_coefficients)
+    #                                                             cameraMatrix=matrix_coefficients,
+    #                                                             distCoeff=distortion_coefficients)
     corners, ids, rejected_img_points = cv2.aruco.detectMarkers(gray, cv2.aruco_dict, parameters=parameters)
     cv2.aruco.detectMarkers
 
@@ -95,9 +95,9 @@ if __name__ == '__main__':
         # height = int(width * (h / w))
         #
         # frame = cv2.resize(frame, (width, height), interpolation=cv2.INTER_CUBIC)
-        z_list = []
+        # z_list = []
         output, t_vec = pose_estimation(frame, aruco_dict_type, k, d, aruco_id)
-        z_list.append(t_vec[0][0][2])
+        # z_list.append(t_vec[0][0][2])
         cv2.imshow('Estimated Pose', output)
         key = cv2.waitKey(1) & 0xFF
         if key == ord('q'):
